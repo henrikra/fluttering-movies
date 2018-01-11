@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'dart:convert';
+
+import 'api_key.dart';
 
 void main() => runApp(new MyApp());
 
@@ -56,6 +60,19 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  _getMovies() async {
+    var httpClient = new HttpClient();
+    var uri = new Uri.https('api.themoviedb.org', '/3/search/movie', {
+      'api_key': new ApiKey().apiKey,
+      'query': 'batman'
+    });
+    var request = await httpClient.getUrl(uri);
+    var response = await request.close();
+    var responseBody = await response.transform(UTF8.decoder).join();
+    Map data = JSON.decode(responseBody);
+    var lol = 1;
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -100,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: new FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: _getMovies,
         tooltip: 'Increment',
         child: new Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
