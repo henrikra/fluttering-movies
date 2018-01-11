@@ -90,7 +90,10 @@ class _MyHomePageState extends State<MyHomePage> {
       body: new Container(
         child: new ListView.builder(
           itemBuilder: (BuildContext context, int index) {
-            return new Image.network("https://image.tmdb.org/t/p/w300${_movies[index]['poster_path']}");
+            return new Image.network(
+              "https://image.tmdb.org/t/p/w300${_movies[index]['poster_path']}", 
+              height: 100.0,
+            );
           },
           itemCount: _movies.length,
         ),
