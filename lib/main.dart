@@ -87,11 +87,23 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: new Text(widget.title),
       ),
-      body: new ListView.builder(
-        itemBuilder: (BuildContext context, int index) {
-          return new Text(_movies[index]['title']);
-        },
-        itemCount: _movies.length,
+      body: new Container(
+        child: new ListView.builder(
+          itemBuilder: (BuildContext context, int index) {
+            return new Text(_movies[index]['title']);
+          },
+          itemCount: _movies.length,
+        ),
+        decoration: new BoxDecoration(
+          gradient: new LinearGradient(
+            begin: Alignment.topLeft,
+            end: const Alignment(0.0, 0.0),
+            colors: <Color>[
+              const Color.fromRGBO(75, 35, 42, 1.0),
+              const Color.fromRGBO(14, 16, 27, 1.0),
+            ],
+          )
+        ),
       ),
       floatingActionButton: new FloatingActionButton(
         onPressed: _getMovies,
