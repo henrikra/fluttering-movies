@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'dart:convert';
+import 'dart:async';
 
 import 'api_key.dart';
 
@@ -48,6 +49,17 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  List movies = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _getMovies().then((value) {
+      setState(() {
+        movies = value['results'];
+      });
+    });
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -60,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  _getMovies() async {
+  Future<Map> _getMovies() async {
     var httpClient = new HttpClient();
     var uri = new Uri.https('api.themoviedb.org', '/3/search/movie', {
       'api_key': apiKey,
@@ -70,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
     var response = await request.close();
     var responseBody = await response.transform(UTF8.decoder).join();
     Map data = JSON.decode(responseBody);
-    var lol = 1;
+    return data;
   }
 
   @override
