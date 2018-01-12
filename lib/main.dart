@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () {
                 Navigator.push(
                   context, 
-                  new MaterialPageRoute(builder: (_) => new SingleMovie(title: movie['title'],))
+                  new MaterialPageRoute(builder: (_) => new SingleMovie(movie: movie))
                 );
               },
             );
