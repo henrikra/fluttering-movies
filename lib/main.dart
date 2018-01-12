@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: new MyHomePage(title: 'Flutter Demo Home Page'),
-      routes: {'/singleMovie': (BuildContext context) => new SingleMovie()},
     );
   }
 }
@@ -92,13 +91,17 @@ class _MyHomePageState extends State<MyHomePage> {
       body: new Container(
         child: new ListView.builder(
           itemBuilder: (BuildContext context, int index) {
+            var movie = _movies[index];
             return new GestureDetector(
               child: new Image.network(
-                "https://image.tmdb.org/t/p/w300${_movies[index]['poster_path']}", 
+                "https://image.tmdb.org/t/p/w300${movie['poster_path']}", 
                 height: 100.0,
               ),
               onTap: () {
-                Navigator.of(context).pushNamed('/singleMovie');
+                Navigator.push(
+                  context, 
+                  new MaterialPageRoute(builder: (_) => new SingleMovie(title: movie['title'],))
+                );
               },
             );
           },
