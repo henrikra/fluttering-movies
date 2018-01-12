@@ -17,9 +17,12 @@ class SingleMovie extends StatelessWidget {
                 child: new Column(
                   children: <Widget>[
                     new Image.network("https://image.tmdb.org/t/p/w300${movie['poster_path']}", height: 150.0,),
-                    new Text(movie['title'], style: new TextStyle(
-                      color: Colors.white, fontSize: 22.0
-                    ), textAlign: TextAlign.center,)
+                    new Container(
+                      child: new Text(movie['title'], style: new TextStyle(
+                        color: Colors.white, fontSize: 22.0,
+                      ), textAlign: TextAlign.center,),
+                      margin: const EdgeInsets.only(top: 20.0),
+                    )
                   ],
                 ),
               ),
