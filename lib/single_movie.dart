@@ -11,7 +11,22 @@ class SingleMovie extends StatelessWidget {
       appBar: new AppBar(title: new Text(movie['title'])),
       body: new Column(
         children: <Widget>[
-          new Image.network("https://image.tmdb.org/t/p/w500${movie['backdrop_path']}"),
+          new Stack(
+            children: <Widget>[
+              new Image.network("https://image.tmdb.org/t/p/w500${movie['backdrop_path']}"),
+              new Positioned(
+                child: new Container(
+                  decoration: new BoxDecoration(
+                    color: const Color.fromRGBO(0, 0, 0, 0.5)
+                  ),
+                ),
+                bottom: 0.0,
+                top: 0.0,
+                left: 0.0,
+                right: 0.0,
+              ),
+            ],
+          ),
           new Container(
               child: new Center(
                 child: new Column(
