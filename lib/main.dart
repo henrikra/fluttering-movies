@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:async';
 
 import 'api_key.dart';
+import 'single_movie.dart';
 
 void main() => runApp(new MyApp());
 
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: new MyHomePage(title: 'Flutter Demo Home Page'),
+      routes: {'/singleMovie': (BuildContext context) => new SingleMovie()},
     );
   }
 }
@@ -90,9 +92,14 @@ class _MyHomePageState extends State<MyHomePage> {
       body: new Container(
         child: new ListView.builder(
           itemBuilder: (BuildContext context, int index) {
-            return new Image.network(
-              "https://image.tmdb.org/t/p/w300${_movies[index]['poster_path']}", 
-              height: 100.0,
+            return new GestureDetector(
+              child: new Image.network(
+                "https://image.tmdb.org/t/p/w300${_movies[index]['poster_path']}", 
+                height: 100.0,
+              ),
+              onTap: () {
+                Navigator.of(context).pushNamed('/singleMovie');
+              },
             );
           },
           itemCount: _movies.length,
