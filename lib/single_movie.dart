@@ -34,13 +34,21 @@ class SingleMovie extends StatelessWidget {
                   new Image.network("https://image.tmdb.org/t/p/w300${movie['poster_path']}", height: 150.0,),
                   new Container(
                     child: new Text(movie['title'], style: new TextStyle(
-                      color: Colors.white, fontSize: 22.0,
+                      color: Colors.white, fontSize: 22.0, fontWeight: FontWeight.bold
                     ), textAlign: TextAlign.center,),
                     margin: const EdgeInsets.only(top: 20.0),
+                  ),
+                  new Container(
+                    child: new Text(
+                      movie['overview'], 
+                      style: new TextStyle(color: Colors.white, fontSize: 16.0),
+                    ),
+                    margin: new EdgeInsets.only(top: 20.0),
                   )
                 ],
               ),
             ),
+            padding: new EdgeInsets.symmetric(horizontal: 20.0),
             decoration: new BoxDecoration(
               gradient: new LinearGradient(
                 begin: Alignment.topLeft,
