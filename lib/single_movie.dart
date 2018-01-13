@@ -35,7 +35,7 @@ class SingleMovie extends StatelessWidget {
                     decoration: new BoxDecoration(
                       boxShadow: <BoxShadow>[
                         new BoxShadow(
-                          color: new Color.fromRGBO(0, 0, 0, 0.5), 
+                          color: new Color.fromRGBO(0, 0, 0, 0.2), 
                           offset: new Offset(10.0, 10.0),
                         )
                       ]
