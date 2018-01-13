@@ -48,7 +48,7 @@ class SingleMovie extends StatelessWidget {
                 ],
               ),
             ),
-            padding: new EdgeInsets.symmetric(horizontal: 20.0),
+            padding: new EdgeInsets.all(20.0),
             decoration: new BoxDecoration(
               gradient: new LinearGradient(
                 begin: Alignment.topLeft,
