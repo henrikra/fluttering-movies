@@ -16,6 +16,7 @@ class SingleMovieState extends State<SingleMovie> {
   final int movieId;
   Map _movie;
   String _director;
+  String _genres;
 
   @override
   void initState() {
@@ -24,6 +25,7 @@ class SingleMovieState extends State<SingleMovie> {
       setState(() {
         _movie = results.first;
         _director = results.last['crew'].firstWhere((n) => n['job'] == 'Director')['name'];
+        _genres = results.first['genres'].map((n) => n['name']).join(', ');
       });
     });
   }
@@ -113,7 +115,7 @@ class SingleMovieState extends State<SingleMovie> {
                           color: new Color.fromRGBO(255, 255, 255, 0.7)
                         )),
                         new Container(
-                          child: new Text(_director, style: new TextStyle(color: Colors.white),),
+                          child: new Text(_genres, style: new TextStyle(color: Colors.white)),
                           margin: const EdgeInsets.only(top: 5.0),
                         )
                       ],
