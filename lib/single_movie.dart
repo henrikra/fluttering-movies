@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-import 'dart:io';
-import 'dart:convert';
 
-import 'api_key.dart';
+import 'api.dart';
 
 class SingleMovie extends StatefulWidget {
   SingleMovie({Key key, this.movieId}): super(key: key);
@@ -21,23 +18,11 @@ class SingleMovieState extends State<SingleMovie> {
   @override
   void initState() {
     super.initState();
-    _getMovieDetails().then((value) {
+    getMovieDetauls(movieId).then((value) {
       setState(() {
         _movie = value;
       });
     });
-  }
-
-  Future<Map> _getMovieDetails() async {
-    var httpClient = new HttpClient();
-    var uri = new Uri.https('api.themoviedb.org', '/3/movie/$movieId', {
-      'api_key': apiKey,
-    });
-    var request = await httpClient.getUrl(uri);
-    var response = await request.close();
-    var responseBody = await response.transform(UTF8.decoder).join();
-    Map data = JSON.decode(responseBody);
-    return data;
   }
 
   @override

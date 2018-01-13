@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'dart:io';
-import 'dart:convert';
-import 'dart:async';
 
-import 'api_key.dart';
 import 'single_movie.dart';
+import 'api.dart';
 
 void main() => runApp(new MyApp());
 
@@ -54,24 +51,11 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    _getMovies().then((value) {
+    getPopuralMovies().then((value) {
       setState(() {
         _movies = value['results'];
       });
     });
-  }
-
-  Future<Map> _getMovies() async {
-    var httpClient = new HttpClient();
-    var uri = new Uri.https('api.themoviedb.org', '/3/search/movie', {
-      'api_key': apiKey,
-      'query': 'Star Wars'
-    });
-    var request = await httpClient.getUrl(uri);
-    var response = await request.close();
-    var responseBody = await response.transform(UTF8.decoder).join();
-    Map data = JSON.decode(responseBody);
-    return data;
   }
 
   @override
@@ -114,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: new FloatingActionButton(
-        onPressed: _getMovies,
+        onPressed: null,
         tooltip: 'Increment',
         child: new Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
