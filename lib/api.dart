@@ -4,6 +4,6 @@ getPopuralMovies() {
   return agent('/3/movie/popular');
 }
 
-getMovieDetauls(int movieId) {
+getMovieDetails(int movieId) {
   return agent('/3/movie/$movieId');
 }

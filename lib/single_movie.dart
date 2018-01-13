@@ -18,7 +18,7 @@ class SingleMovieState extends State<SingleMovie> {
   @override
   void initState() {
     super.initState();
-    getMovieDetauls(movieId).then((value) {
+    getMovieDetails(movieId).then((value) {
       setState(() {
         _movie = value;
       });
