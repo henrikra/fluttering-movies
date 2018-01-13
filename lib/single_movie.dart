@@ -103,6 +103,9 @@ class SingleMovieState extends State<SingleMovie> {
                         )
                       ],
                     ),
+                    new Container(
+                      width: 40.0,
+                    ),
                     new Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
