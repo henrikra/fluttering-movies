@@ -111,7 +111,7 @@ class SingleMovieState extends State<SingleMovie> {
                     new Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        new Text('GENRE', style: new TextStyle(
+                        new Text('GENRES', style: new TextStyle(
                           color: new Color.fromRGBO(255, 255, 255, 0.7)
                         )),
                         new Container(
