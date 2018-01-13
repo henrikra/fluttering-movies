@@ -42,7 +42,6 @@ class SingleMovieState extends State<SingleMovie> {
     return new Scaffold(
       appBar: new AppBar(title: new Text(_movie['title'])),
       body: new Stack(
-        overflow: Overflow.visible,
         children: <Widget>[
           new Image.network(
               "https://image.tmdb.org/t/p/w500${_movie['backdrop_path']}"),
