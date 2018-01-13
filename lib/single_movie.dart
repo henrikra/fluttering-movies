@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 import 'api.dart';
 
@@ -14,13 +15,15 @@ class SingleMovieState extends State<SingleMovie> {
   SingleMovieState({this.movieId});
   final int movieId;
   Map _movie;
+  String _director;
 
   @override
   void initState() {
     super.initState();
-    getMovieDetails(movieId).then((value) {
+    Future.wait([getMovieDetails(movieId), getMovieCredits(movieId)]).then((results) {
       setState(() {
-        _movie = value;
+        _movie = results.first;
+        _director = results.last['crew'].firstWhere((n) => n['job'] == 'Director')['name'];
       });
     });
   }
@@ -85,7 +88,27 @@ class SingleMovieState extends State<SingleMovie> {
                           fontFamily: "Roboto",
                           height: 1.25),
                     ),
-                    margin: new EdgeInsets.only(top: 20.0),
+                    margin: new EdgeInsets.symmetric(vertical: 20.0),
+                  ),
+                  new Row(
+                    children: <Widget>[
+                      new Column(
+                        children: <Widget>[
+                          new Text('DIRECTOR', style: new TextStyle(
+                            color: new Color.fromRGBO(255, 255, 255, 0.7)
+                          )),
+                          new Text(_director, style: new TextStyle(color: Colors.white),),
+                        ],
+                      ),
+                      new Column(
+                        children: <Widget>[
+                          new Text('GENRE', style: new TextStyle(
+                            color: new Color.fromRGBO(255, 255, 255, 0.7)
+                          )),
+                          new Text(_director, style: new TextStyle(color: Colors.white),),
+                        ],
+                      ),
+                    ],
                   )
                 ],
               ),
