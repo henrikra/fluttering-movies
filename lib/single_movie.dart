@@ -1,19 +1,61 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'dart:io';
+import 'dart:convert';
 
-class SingleMovie extends StatelessWidget {
-  SingleMovie({this.movie});
+import 'api_key.dart';
 
-  final Map movie;
+class SingleMovie extends StatefulWidget {
+  SingleMovie({Key key, this.movieId}): super(key: key);
+  final int movieId;
+
+  @override
+  SingleMovieState createState() => new SingleMovieState(movieId: movieId);
+}
+
+class SingleMovieState extends State<SingleMovie> {
+  SingleMovieState({this.movieId});
+  final int movieId;
+  Map _movie;
+
+  @override
+  void initState() {
+    super.initState();
+    _getMovieDetails().then((value) {
+      setState(() {
+        _movie = value;
+      });
+    });
+  }
+
+  Future<Map> _getMovieDetails() async {
+    var httpClient = new HttpClient();
+    var uri = new Uri.https('api.themoviedb.org', '/3/movie/$movieId', {
+      'api_key': apiKey,
+    });
+    var request = await httpClient.getUrl(uri);
+    var response = await request.close();
+    var responseBody = await response.transform(UTF8.decoder).join();
+    Map data = JSON.decode(responseBody);
+    return data;
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (_movie == null) {
+      return new Scaffold(
+        body: new Center(
+          child: new Text('Loading'),
+        ),
+      );
+    }
     return new Scaffold(
-      appBar: new AppBar(title: new Text(movie['title'])),
+      appBar: new AppBar(title: new Text(_movie['title'])),
       body: new Stack(
         overflow: Overflow.visible,
         children: <Widget>[
           new Image.network(
-              "https://image.tmdb.org/t/p/w500${movie['backdrop_path']}"),
+              "https://image.tmdb.org/t/p/w500${_movie['backdrop_path']}"),
           new Positioned(
             child: new Container(
               decoration:
@@ -30,7 +72,7 @@ class SingleMovie extends StatelessWidget {
                 children: <Widget>[
                   new Container(
                     child: new Text(
-                      movie['title'],
+                      _movie['title'],
                       style: new TextStyle(
                         color: Colors.white,
                         fontSize: 22.0,
@@ -45,7 +87,7 @@ class SingleMovie extends StatelessWidget {
                   ),
                   new Container(
                     child: new Text(
-                      movie['overview'],
+                      _movie['overview'],
                       style: new TextStyle(
                           color: Colors.white,
                           fontSize: 16.0,
@@ -83,7 +125,7 @@ class SingleMovie extends StatelessWidget {
                   )
                 ]),
                 child: new Image.network(
-                  "https://image.tmdb.org/t/p/w300${movie['poster_path']}",
+                  "https://image.tmdb.org/t/p/w300${_movie['poster_path']}",
                   height: 150.0,
                 ),
               ),
