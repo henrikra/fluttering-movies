@@ -96,7 +96,10 @@ class SingleMovieState extends State<SingleMovie> {
                         new Text('DIRECTOR', style: new TextStyle(
                           color: new Color.fromRGBO(255, 255, 255, 0.7)
                         )),
-                        new Text(_director, style: new TextStyle(color: Colors.white),),
+                        new Container(
+                          child: new Text(_director, style: new TextStyle(color: Colors.white),),
+                          margin: const EdgeInsets.only(top: 5.0),
+                        )
                       ],
                     ),
                     new Column(
@@ -104,7 +107,10 @@ class SingleMovieState extends State<SingleMovie> {
                         new Text('GENRE', style: new TextStyle(
                           color: new Color.fromRGBO(255, 255, 255, 0.7)
                         )),
-                        new Text(_director, style: new TextStyle(color: Colors.white),),
+                        new Container(
+                          child: new Text(_director, style: new TextStyle(color: Colors.white),),
+                          margin: const EdgeInsets.only(top: 5.0),
+                        )
                       ],
                     ),
                   ],
