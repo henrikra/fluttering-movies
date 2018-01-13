@@ -93,33 +93,40 @@ class SingleMovieState extends State<SingleMovie> {
                 ),
                 new Row(
                   children: <Widget>[
-                    new Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        new Text('DIRECTOR', style: new TextStyle(
-                          color: new Color.fromRGBO(255, 255, 255, 0.7)
-                        )),
-                        new Container(
-                          child: new Text(_director, style: new TextStyle(color: Colors.white),),
-                          margin: const EdgeInsets.only(top: 5.0),
-                        )
-                      ],
+                    new Expanded(
+                      flex: 2,
+                      child: new Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          new Text('DIRECTOR', style: new TextStyle(
+                            color: new Color.fromRGBO(255, 255, 255, 0.7)
+                          )),
+                          new Container(
+                            child: new Text(_director, style: new TextStyle(color: Colors.white),),
+                            margin: const EdgeInsets.only(top: 5.0),
+                          )
+                        ],
+                      ),
                     ),
-                    new Container(
-                      width: 40.0,
-                    ),
-                    new Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        new Text('GENRES', style: new TextStyle(
-                          color: new Color.fromRGBO(255, 255, 255, 0.7)
-                        )),
-                        new Container(
-                          child: new Text(_genres, style: new TextStyle(color: Colors.white)),
-                          margin: const EdgeInsets.only(top: 5.0),
-                        )
-                      ],
-                    ),
+                    new Expanded(
+                      flex: 3,
+                      child: new Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          new Text('GENRES', style: new TextStyle(
+                            color: new Color.fromRGBO(255, 255, 255, 0.7)
+                          )),
+                          new Container(
+                            child: new Text(
+                              _genres, 
+                              style: new TextStyle(color: Colors.white),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            margin: const EdgeInsets.only(top: 5.0),
+                          )
+                        ],
+                      ),
+                    )
                   ],
                 )
               ],
