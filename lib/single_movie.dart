@@ -71,6 +71,12 @@ class SingleMovieState extends State<SingleMovie> {
                     margin: const EdgeInsets.only(top: 50.0),
                   ),
                   new Container(
+                    margin: const EdgeInsets.only(top: 20.0),
+                    child: new Text("${_movie['runtime'].toString()} min", style: new TextStyle(
+                      color: new Color.fromRGBO(255, 255, 255, 0.7)
+                    )),
+                  ),
+                  new Container(
                     child: new Text(
                       _movie['overview'],
                       style: new TextStyle(
