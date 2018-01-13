@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
     var httpClient = new HttpClient();
     var uri = new Uri.https('api.themoviedb.org', '/3/search/movie', {
       'api_key': apiKey,
-      'query': 'batman'
+      'query': 'Star Wars'
     });
     var request = await httpClient.getUrl(uri);
     var response = await request.close();

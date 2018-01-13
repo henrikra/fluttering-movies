@@ -47,14 +47,20 @@ class SingleMovie extends StatelessWidget {
                   ),
                   new Container(
                     child: new Text(movie['title'], style: new TextStyle(
-                      color: Colors.white, fontSize: 22.0, fontWeight: FontWeight.bold
+                      color: Colors.white, fontSize: 22.0, fontWeight: FontWeight.bold,
+                       fontFamily: "Roboto", letterSpacing: 1.0
                     ), textAlign: TextAlign.center,),
                     margin: const EdgeInsets.only(top: 20.0),
                   ),
                   new Container(
                     child: new Text(
                       movie['overview'], 
-                      style: new TextStyle(color: Colors.white, fontSize: 16.0),
+                      style: new TextStyle(
+                        color: Colors.white, 
+                        fontSize: 16.0, 
+                        fontFamily: "Roboto",
+                        height: 1.25
+                      ),
                     ),
                     margin: new EdgeInsets.only(top: 20.0),
                   )
