@@ -40,7 +40,6 @@ class SingleMovieState extends State<SingleMovie> {
       );
     }
     return new Scaffold(
-      appBar: new AppBar(title: new Text(_movie['title'])),
       body: new Stack(
         children: <Widget>[
           new Container(color: const Color.fromRGBO(14, 16, 27, 1.0),),
@@ -136,7 +135,7 @@ class SingleMovieState extends State<SingleMovie> {
                       ],
                     ),
                     padding: new EdgeInsets.all(20.0),
-                    margin: const EdgeInsets.only(top: 211.0),
+                    margin: const EdgeInsets.only(top: 191.0),
                     decoration: new BoxDecoration(
                         gradient: new LinearGradient(
                       begin: const Alignment(-0.25, -0.5),
@@ -170,7 +169,27 @@ class SingleMovieState extends State<SingleMovie> {
                 ],
               )   
             ],
-          )
+          ),
+          new Positioned(
+            top: 0.0,
+            left: 0.0,
+            right: 0.0,
+            height: 76.0,
+            child: new Container(
+              padding: const EdgeInsets.symmetric(horizontal: 5.0),
+              child: new Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  new IconButton(
+                    icon: new Icon(Icons.arrow_back_ios, color: Colors.white,), 
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  )
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
