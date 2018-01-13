@@ -92,6 +92,7 @@ class SingleMovieState extends State<SingleMovie> {
                 new Row(
                   children: <Widget>[
                     new Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         new Text('DIRECTOR', style: new TextStyle(
                           color: new Color.fromRGBO(255, 255, 255, 0.7)
@@ -103,6 +104,7 @@ class SingleMovieState extends State<SingleMovie> {
                       ],
                     ),
                     new Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         new Text('GENRE', style: new TextStyle(
                           color: new Color.fromRGBO(255, 255, 255, 0.7)
