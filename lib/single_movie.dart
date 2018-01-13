@@ -55,63 +55,61 @@ class SingleMovieState extends State<SingleMovie> {
             right: 0.0,
           ),
           new Container(
-            child: new Center(
-              child: new Column(
-                children: <Widget>[
-                  new Container(
-                    child: new Text(
-                      _movie['title'],
-                      style: new TextStyle(
+            child: new Column(
+              children: <Widget>[
+                new Container(
+                  child: new Text(
+                    _movie['title'],
+                    style: new TextStyle(
+                      color: Colors.white,
+                      fontSize: 22.0,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Roboto",
+                      letterSpacing: 1.0,
+                      height: 1.25,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  margin: const EdgeInsets.only(top: 50.0),
+                ),
+                new Container(
+                  margin: const EdgeInsets.only(top: 20.0),
+                  child: new Text("${_movie['runtime'].toString()} min", style: new TextStyle(
+                    color: new Color.fromRGBO(255, 255, 255, 0.7)
+                  )),
+                ),
+                new Container(
+                  child: new Text(
+                    _movie['overview'],
+                    style: new TextStyle(
                         color: Colors.white,
-                        fontSize: 22.0,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
                         fontFamily: "Roboto",
-                        letterSpacing: 1.0,
-                        height: 1.25,
-                      ),
-                      textAlign: TextAlign.center,
+                        height: 1.25),
+                  ),
+                  margin: new EdgeInsets.symmetric(vertical: 20.0),
+                ),
+                new Row(
+                  children: <Widget>[
+                    new Column(
+                      children: <Widget>[
+                        new Text('DIRECTOR', style: new TextStyle(
+                          color: new Color.fromRGBO(255, 255, 255, 0.7)
+                        )),
+                        new Text(_director, style: new TextStyle(color: Colors.white),),
+                      ],
                     ),
-                    margin: const EdgeInsets.only(top: 50.0),
-                  ),
-                  new Container(
-                    margin: const EdgeInsets.only(top: 20.0),
-                    child: new Text("${_movie['runtime'].toString()} min", style: new TextStyle(
-                      color: new Color.fromRGBO(255, 255, 255, 0.7)
-                    )),
-                  ),
-                  new Container(
-                    child: new Text(
-                      _movie['overview'],
-                      style: new TextStyle(
-                          color: Colors.white,
-                          fontSize: 16.0,
-                          fontFamily: "Roboto",
-                          height: 1.25),
+                    new Column(
+                      children: <Widget>[
+                        new Text('GENRE', style: new TextStyle(
+                          color: new Color.fromRGBO(255, 255, 255, 0.7)
+                        )),
+                        new Text(_director, style: new TextStyle(color: Colors.white),),
+                      ],
                     ),
-                    margin: new EdgeInsets.symmetric(vertical: 20.0),
-                  ),
-                  new Row(
-                    children: <Widget>[
-                      new Column(
-                        children: <Widget>[
-                          new Text('DIRECTOR', style: new TextStyle(
-                            color: new Color.fromRGBO(255, 255, 255, 0.7)
-                          )),
-                          new Text(_director, style: new TextStyle(color: Colors.white),),
-                        ],
-                      ),
-                      new Column(
-                        children: <Widget>[
-                          new Text('GENRE', style: new TextStyle(
-                            color: new Color.fromRGBO(255, 255, 255, 0.7)
-                          )),
-                          new Text(_director, style: new TextStyle(color: Colors.white),),
-                        ],
-                      ),
-                    ],
-                  )
-                ],
-              ),
+                  ],
+                )
+              ],
             ),
             padding: new EdgeInsets.all(20.0),
             margin: const EdgeInsets.only(top: 211.0),
