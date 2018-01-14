@@ -81,54 +81,56 @@ class _MyHomePageState extends State<MyHomePage> {
                   var movie = _movies[index];
                   return new Container(
                     margin: const EdgeInsets.only(right: 20.0),
-                    child: new Stack(
-                      children: <Widget>[
-                        new Image.network(
-                          "https://image.tmdb.org/t/p/w500${movie['backdrop_path']}"),
-                        new Positioned(
-                          child: new Container(
-                            decoration:
-                                new BoxDecoration(color: const Color.fromRGBO(0, 0, 0, 0.25)),
+                    child: new GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context, 
+                          new MaterialPageRoute(builder: (_) => new SingleMovie(
+                            movieId: movie['id'],
+                            passedMovie: movie,
+                          ))
+                        );
+                      },
+                      child: new Stack(
+                        children: <Widget>[
+                          new Image.network(
+                            "https://image.tmdb.org/t/p/w500${movie['backdrop_path']}"),
+                          new Positioned(
+                            child: new Container(
+                              decoration:
+                                  new BoxDecoration(color: const Color.fromRGBO(0, 0, 0, 0.25)),
+                            ),
+                            top: 0.0,
+                            left: 0.0,
+                            right: 0.0,
+                            height: 189.0,
                           ),
-                          top: 0.0,
-                          left: 0.0,
-                          right: 0.0,
-                          height: 189.0,
-                        ),
-                        new Positioned(
-                          bottom: 0.0,
-                          left: 10.0,
-                          child: new PhotoHero(
-                            height: 100.0,
-                            photo: "https://image.tmdb.org/t/p/w300${movie['poster_path']}",
-                            tag: movie['id'],
-                            onTap: () {
-                              Navigator.push(
-                                context, 
-                                new MaterialPageRoute(builder: (_) => new SingleMovie(
-                                  movieId: movie['id'],
-                                  passedMovie: movie,
-                                ))
-                              );
-                            },
+                          new Positioned(
+                            bottom: 0.0,
+                            left: 10.0,
+                            child: new PhotoHero(
+                              height: 100.0,
+                              photo: "https://image.tmdb.org/t/p/w300${movie['poster_path']}",
+                              tag: movie['id'],
+                            ),
                           ),
-                        ),
-                        new Positioned(
-                          bottom: 30.0,
-                          left: 90.0,
-                          right: 0.0,
-                          child: new Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              new Text(
-                                movie['title'], 
-                                style: new TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),
-                                overflow: TextOverflow.ellipsis,
-                              )
-                            ],
-                          ),
-                        )
-                      ],
+                          new Positioned(
+                            bottom: 30.0,
+                            left: 90.0,
+                            right: 0.0,
+                            child: new Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                new Text(
+                                  movie['title'], 
+                                  style: new TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),
+                                  overflow: TextOverflow.ellipsis,
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   );
                 },
