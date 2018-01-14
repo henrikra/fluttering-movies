@@ -2,32 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'single_movie.dart';
 import 'api.dart';
+import 'photo_hero.dart';
 
 void main() => runApp(new MyApp());
-
-class PhotoHero extends StatelessWidget {
-  const PhotoHero({ Key key, this.photo, this.onTap, this.width, this.height, this.tag }) : super(key: key);
-
-  final String photo;
-  final VoidCallback onTap;
-  final double width;
-  final double height;
-  final int tag;
-
-  Widget build(BuildContext context) {
-    return new SizedBox(
-      width: width,
-      height: height,
-      child: new Hero(
-        tag: tag,
-        child: new GestureDetector(
-          onTap: onTap,
-          child: new Image.network(photo)
-        ),
-      ),
-    );
-  }
-}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

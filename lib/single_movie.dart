@@ -2,26 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'api.dart';
-
-class PhotoHero extends StatelessWidget {
-  const PhotoHero({ Key key, this.photo, this.width, this.height, this.tag }) : super(key: key);
-
-  final String photo;
-  final double width;
-  final double height;
-  final int tag;
-
-  Widget build(BuildContext context) {
-    return new SizedBox(
-      width: width,
-      height: height,
-      child: new Hero(
-        tag: tag,
-        child: new Image.network(photo)
-      ),
-    );
-  }
-}
+import 'photo_hero.dart';
 
 class SingleMovie extends StatefulWidget {
   SingleMovie({Key key, this.movieId, this.passedMovie}): super(key: key);
