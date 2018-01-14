@@ -48,6 +48,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List _movies = [];
+  List _upcomingMovies = [];
 
   @override
   void initState() {
@@ -55,6 +56,11 @@ class _MyHomePageState extends State<MyHomePage> {
     getPopuralMovies().then((value) {
       setState(() {
         _movies = value['results'];
+      });
+    });
+    getUpcomingMovies().then((value) {
+      setState(() {
+        _upcomingMovies = value['results'];
       });
     });
   }
@@ -70,6 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return new Scaffold(
       body: new Container(
         child: new Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             new Container(
               height: 270.0,
@@ -141,6 +148,55 @@ class _MyHomePageState extends State<MyHomePage> {
                   );
                 },
                 itemCount: _movies.length,
+              ),
+            ),
+            new Container(
+              padding: const EdgeInsets.only(left: 20.0),
+              margin: const EdgeInsets.only(top: 15.0),
+              child: new Text('Upcoming', style: new TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18.0)),
+            ),
+            new Container(
+              height: 230.0,
+              child: new ListView.builder(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.only(top: 20.0, left: 20.0, bottom: 20.0),
+                itemExtent: 140.0,
+                itemBuilder: (BuildContext context, int index) {
+                  var movie = _upcomingMovies[index];
+                  return new Container(
+                    margin: const EdgeInsets.only(right: 20.0),
+                    child: new GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context, 
+                          new MaterialPageRoute(builder: (_) => new SingleMovie(
+                            movieId: movie['id'],
+                            passedMovie: movie,
+                          ))
+                        );
+                      },
+                      child: new Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          new PhotoHero(
+                            height: 150.0,
+                            photo: "https://image.tmdb.org/t/p/w300${movie['poster_path']}",
+                            tag: "${movie['id']}",
+                          ),
+                          new Container(
+                            margin: const EdgeInsets.only(top: 20.0),
+                            child: new Text(
+                              movie['title'], 
+                              style: new TextStyle(color: Colors.white, fontSize: 14.0),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                },
+                itemCount: _upcomingMovies.length,
               ),
             ),
           ],
