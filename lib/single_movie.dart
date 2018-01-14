@@ -75,7 +75,7 @@ class SingleMovieState extends State<SingleMovie> {
                             ),
                             textAlign: TextAlign.center,
                           ),
-                          margin: const EdgeInsets.only(top: 50.0),
+                          margin: const EdgeInsets.only(top: 70.0),
                         ),
                         new Container(
                           margin: const EdgeInsets.only(top: 20.0),
