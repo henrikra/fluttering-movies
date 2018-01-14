@@ -44,7 +44,10 @@ class SingleMovieState extends State<SingleMovie> {
         children: <Widget>[
           new Container(color: const Color.fromRGBO(14, 16, 27, 1.0),),
           new Image.network(
-              "https://image.tmdb.org/t/p/w500${_movie['backdrop_path']}", height: 211.0,),
+            "https://image.tmdb.org/t/p/w500${_movie['backdrop_path']}", 
+            height: 211.0, 
+            fit: BoxFit.cover,
+          ),
           new Positioned(
             child: new Container(
               decoration:
