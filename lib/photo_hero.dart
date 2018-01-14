@@ -6,7 +6,7 @@ class PhotoHero extends StatelessWidget {
   final String photo;
   final VoidCallback onTap;
   final double height;
-  final int tag;
+  final String tag;
 
   Widget build(BuildContext context) {
     return new Hero(

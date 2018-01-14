@@ -39,10 +39,10 @@ class SingleMovieState extends State<SingleMovie> {
       body: new Stack(
         children: <Widget>[
           new Container(color: const Color.fromRGBO(14, 16, 27, 1.0),),
-          new Image.network(
-            "https://image.tmdb.org/t/p/w500${passedMovie['backdrop_path']}", 
-            height: 211.0, 
-            fit: BoxFit.cover,
+          new PhotoHero(
+            photo: "https://image.tmdb.org/t/p/w500${passedMovie['backdrop_path']}",
+            tag: "${passedMovie['id']}backdrop",
+            height: 211.0,
           ),
           new Positioned(
             child: new Container(
@@ -164,7 +164,7 @@ class SingleMovieState extends State<SingleMovie> {
                         child: new PhotoHero(
                           photo: "https://image.tmdb.org/t/p/w300${passedMovie['poster_path']}",
                           height: 150.0,
-                          tag: passedMovie['id'],
+                          tag: "${passedMovie['id']}",
                         ),
                       ),
                     ),

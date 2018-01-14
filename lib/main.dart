@@ -93,8 +93,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       child: new Stack(
                         children: <Widget>[
-                          new Image.network(
-                            "https://image.tmdb.org/t/p/w500${movie['backdrop_path']}"),
+                          new PhotoHero(
+                            photo: "https://image.tmdb.org/t/p/w500${movie['backdrop_path']}",
+                            tag: "${movie['id']}backdrop",
+                          ),
                           new Positioned(
                             child: new Container(
                               decoration:
@@ -111,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: new PhotoHero(
                               height: 100.0,
                               photo: "https://image.tmdb.org/t/p/w300${movie['poster_path']}",
-                              tag: movie['id'],
+                              tag: "${movie['id']}",
                             ),
                           ),
                           new Positioned(
