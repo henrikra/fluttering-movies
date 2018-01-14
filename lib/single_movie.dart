@@ -108,7 +108,10 @@ class SingleMovieState extends State<SingleMovie> {
                                     color: new Color.fromRGBO(255, 255, 255, 0.7)
                                   )),
                                   new Container(
-                                    child: new Text(_director, style: new TextStyle(color: Colors.white),),
+                                    child: new Text(_director, 
+                                      style: new TextStyle(color: Colors.white),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                                     margin: const EdgeInsets.only(top: 5.0),
                                   )
                                 ],
