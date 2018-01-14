@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 270.0,
               child: new ListView.builder(
                 scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.only(top: 20.0, left: 20.0, bottom: 20.0),
                 itemExtent: MediaQuery.of(context).size.width - 20,
                 itemBuilder: (BuildContext context, int index) {
                   var movie = _movies[index];
@@ -121,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                           new Positioned(
-                            bottom: 30.0,
+                            bottom: 10.0,
                             left: 90.0,
                             right: 0.0,
                             child: new Column(
