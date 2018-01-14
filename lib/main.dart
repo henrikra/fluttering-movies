@@ -86,6 +86,16 @@ class _MyHomePageState extends State<MyHomePage> {
                         new Image.network(
                           "https://image.tmdb.org/t/p/w500${movie['backdrop_path']}"),
                         new Positioned(
+                          child: new Container(
+                            decoration:
+                                new BoxDecoration(color: const Color.fromRGBO(0, 0, 0, 0.25)),
+                          ),
+                          top: 0.0,
+                          left: 0.0,
+                          right: 0.0,
+                          height: 189.0,
+                        ),
+                        new Positioned(
                           bottom: 0.0,
                           left: 10.0,
                           child: new PhotoHero(
@@ -104,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                         new Positioned(
-                          bottom: 28.0,
+                          bottom: 30.0,
                           left: 90.0,
                           right: 0.0,
                           child: new Column(
@@ -112,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             children: <Widget>[
                               new Text(
                                 movie['title'], 
-                                style: new TextStyle(color: Colors.white, fontSize: 22.0, fontWeight: FontWeight.bold),
+                                style: new TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),
                                 overflow: TextOverflow.ellipsis,
                               )
                             ],
