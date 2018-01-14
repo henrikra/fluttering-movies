@@ -69,25 +69,32 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return new Scaffold(
       body: new Container(
-        child: new ListView.builder(
-          itemBuilder: (BuildContext context, int index) {
-            var movie = _movies[index];
-            return new PhotoHero(
-              photo: "https://image.tmdb.org/t/p/w300${movie['poster_path']}",
-              tag: movie['id'],
-              onTap: () {
-                Navigator.push(
-                  context, 
-                  new MaterialPageRoute(builder: (_) => new SingleMovie(
-                    movieId: movie['id'],
-                    passedMovie: movie,
-                  ))
-                );
-              },
-              height: 100.0,
-            );
-          },
-          itemCount: _movies.length,
+        child: new Column(
+          children: <Widget>[
+            new Container(
+              height: 200.0,
+              child: new ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  var movie = _movies[index];
+                  return new PhotoHero(
+                    photo: "https://image.tmdb.org/t/p/w300${movie['poster_path']}",
+                    tag: movie['id'],
+                    onTap: () {
+                      Navigator.push(
+                        context, 
+                        new MaterialPageRoute(builder: (_) => new SingleMovie(
+                          movieId: movie['id'],
+                          passedMovie: movie,
+                        ))
+                      );
+                    },
+                  );
+                },
+                itemCount: _movies.length,
+              ),
+            ),
+          ],
         ),
         decoration: new BoxDecoration(
           gradient: new LinearGradient(
