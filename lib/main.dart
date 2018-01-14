@@ -72,23 +72,54 @@ class _MyHomePageState extends State<MyHomePage> {
         child: new Column(
           children: <Widget>[
             new Container(
-              height: 200.0,
+              height: 270.0,
               child: new ListView.builder(
                 scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.all(20.0),
+                itemExtent: MediaQuery.of(context).size.width - 20,
                 itemBuilder: (BuildContext context, int index) {
                   var movie = _movies[index];
-                  return new PhotoHero(
-                    photo: "https://image.tmdb.org/t/p/w300${movie['poster_path']}",
-                    tag: movie['id'],
-                    onTap: () {
-                      Navigator.push(
-                        context, 
-                        new MaterialPageRoute(builder: (_) => new SingleMovie(
-                          movieId: movie['id'],
-                          passedMovie: movie,
-                        ))
-                      );
-                    },
+                  return new Container(
+                    margin: const EdgeInsets.only(right: 20.0),
+                    child: new Stack(
+                      children: <Widget>[
+                        new Image.network(
+                          "https://image.tmdb.org/t/p/w500${movie['backdrop_path']}"),
+                        new Positioned(
+                          bottom: 0.0,
+                          left: 10.0,
+                          child: new PhotoHero(
+                            height: 100.0,
+                            photo: "https://image.tmdb.org/t/p/w300${movie['poster_path']}",
+                            tag: movie['id'],
+                            onTap: () {
+                              Navigator.push(
+                                context, 
+                                new MaterialPageRoute(builder: (_) => new SingleMovie(
+                                  movieId: movie['id'],
+                                  passedMovie: movie,
+                                ))
+                              );
+                            },
+                          ),
+                        ),
+                        new Positioned(
+                          bottom: 28.0,
+                          left: 90.0,
+                          right: 0.0,
+                          child: new Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              new Text(
+                                movie['title'], 
+                                style: new TextStyle(color: Colors.white, fontSize: 22.0, fontWeight: FontWeight.bold),
+                                overflow: TextOverflow.ellipsis,
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   );
                 },
                 itemCount: _movies.length,
