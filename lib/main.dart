@@ -5,6 +5,30 @@ import 'api.dart';
 
 void main() => runApp(new MyApp());
 
+class PhotoHero extends StatelessWidget {
+  const PhotoHero({ Key key, this.photo, this.onTap, this.width, this.height, this.tag }) : super(key: key);
+
+  final String photo;
+  final VoidCallback onTap;
+  final double width;
+  final double height;
+  final int tag;
+
+  Widget build(BuildContext context) {
+    return new SizedBox(
+      width: width,
+      height: height,
+      child: new Hero(
+        tag: tag,
+        child: new GestureDetector(
+          onTap: onTap,
+          child: new Image.network(photo)
+        ),
+      ),
+    );
+  }
+}
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -71,17 +95,19 @@ class _MyHomePageState extends State<MyHomePage> {
         child: new ListView.builder(
           itemBuilder: (BuildContext context, int index) {
             var movie = _movies[index];
-            return new GestureDetector(
-              child: new Image.network(
-                "https://image.tmdb.org/t/p/w300${movie['poster_path']}", 
-                height: 100.0,
-              ),
+            return new PhotoHero(
+              photo: "https://image.tmdb.org/t/p/w300${movie['poster_path']}",
+              tag: movie['id'],
               onTap: () {
                 Navigator.push(
                   context, 
-                  new MaterialPageRoute(builder: (_) => new SingleMovie(movieId: movie['id'],))
+                  new MaterialPageRoute(builder: (_) => new SingleMovie(
+                    movieId: movie['id'],
+                    passedMovie: movie,
+                  ))
                 );
               },
+              height: 100.0,
             );
           },
           itemCount: _movies.length,

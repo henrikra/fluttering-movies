@@ -3,20 +3,42 @@ import 'dart:async';
 
 import 'api.dart';
 
+class PhotoHero extends StatelessWidget {
+  const PhotoHero({ Key key, this.photo, this.width, this.height, this.tag }) : super(key: key);
+
+  final String photo;
+  final double width;
+  final double height;
+  final int tag;
+
+  Widget build(BuildContext context) {
+    return new SizedBox(
+      width: width,
+      height: height,
+      child: new Hero(
+        tag: tag,
+        child: new Image.network(photo)
+      ),
+    );
+  }
+}
+
 class SingleMovie extends StatefulWidget {
-  SingleMovie({Key key, this.movieId}): super(key: key);
+  SingleMovie({Key key, this.movieId, this.passedMovie}): super(key: key);
   final int movieId;
+  final Map passedMovie;
 
   @override
-  SingleMovieState createState() => new SingleMovieState(movieId: movieId);
+  SingleMovieState createState() => new SingleMovieState(movieId: movieId, passedMovie: passedMovie);
 }
 
 class SingleMovieState extends State<SingleMovie> {
-  SingleMovieState({this.movieId});
+  SingleMovieState({this.movieId, this.passedMovie});
   final int movieId;
   Map _movie;
   String _director;
   String _genres;
+  Map passedMovie;
 
   @override
   void initState() {
@@ -32,19 +54,12 @@ class SingleMovieState extends State<SingleMovie> {
 
   @override
   Widget build(BuildContext context) {
-    if (_movie == null) {
-      return new Scaffold(
-        body: new Center(
-          child: new Text('Loading'),
-        ),
-      );
-    }
     return new Scaffold(
       body: new Stack(
         children: <Widget>[
           new Container(color: const Color.fromRGBO(14, 16, 27, 1.0),),
           new Image.network(
-            "https://image.tmdb.org/t/p/w500${_movie['backdrop_path']}", 
+            "https://image.tmdb.org/t/p/w500${passedMovie['backdrop_path']}", 
             height: 211.0, 
             fit: BoxFit.cover,
           ),
@@ -67,7 +82,7 @@ class SingleMovieState extends State<SingleMovie> {
                       children: <Widget>[
                         new Container(
                           child: new Text(
-                            _movie['title'],
+                            passedMovie['title'],
                             style: new TextStyle(
                               color: Colors.white,
                               fontSize: 22.0,
@@ -82,13 +97,13 @@ class SingleMovieState extends State<SingleMovie> {
                         ),
                         new Container(
                           margin: const EdgeInsets.only(top: 20.0),
-                          child: new Text("${_movie['runtime'].toString()} min", style: new TextStyle(
+                          child: new Text("${_movie != null ? _movie['runtime'].toString() : '-'} min", style: new TextStyle(
                             color: new Color.fromRGBO(255, 255, 255, 0.7)
                           )),
                         ),
                         new Container(
                           child: new Text(
-                            _movie['overview'],
+                            passedMovie['overview'],
                             style: new TextStyle(
                                 color: Colors.white,
                                 fontSize: 16.0,
@@ -108,7 +123,7 @@ class SingleMovieState extends State<SingleMovie> {
                                     color: new Color.fromRGBO(255, 255, 255, 0.7)
                                   )),
                                   new Container(
-                                    child: new Text(_director, 
+                                    child: new Text(_director ?? '...', 
                                       style: new TextStyle(color: Colors.white),
                                       overflow: TextOverflow.ellipsis,
                                     ),
@@ -127,7 +142,7 @@ class SingleMovieState extends State<SingleMovie> {
                                   )),
                                   new Container(
                                     child: new Text(
-                                      _genres, 
+                                      _genres ?? '...', 
                                       style: new TextStyle(color: Colors.white),
                                       overflow: TextOverflow.ellipsis,
                                     ),
@@ -165,9 +180,10 @@ class SingleMovieState extends State<SingleMovie> {
                             offset: new Offset(10.0, 10.0),
                           )
                         ]),
-                        child: new Image.network(
-                          "https://image.tmdb.org/t/p/w300${_movie['poster_path']}",
+                        child: new PhotoHero(
+                          photo: "https://image.tmdb.org/t/p/w300${passedMovie['poster_path']}",
                           height: 150.0,
+                          tag: passedMovie['id'],
                         ),
                       ),
                     ),
