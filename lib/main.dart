@@ -93,19 +93,23 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       child: new Stack(
                         children: <Widget>[
-                          new PhotoHero(
-                            photo: "https://image.tmdb.org/t/p/w500${movie['backdrop_path']}",
+                          new Hero(
                             tag: "${movie['id']}backdrop",
-                          ),
-                          new Positioned(
-                            child: new Container(
-                              decoration:
-                                  new BoxDecoration(color: const Color.fromRGBO(0, 0, 0, 0.25)),
+                            child: new Stack(
+                              children: <Widget>[
+                                new Image.network("https://image.tmdb.org/t/p/w500${movie['backdrop_path']}"),
+                                new Positioned(
+                                  child: new Container(
+                                    decoration:
+                                        new BoxDecoration(color: const Color.fromRGBO(0, 0, 0, 0.25)),
+                                  ),
+                                  top: 0.0,
+                                  left: 0.0,
+                                  right: 0.0,
+                                  height: 189.0,
+                                ),
+                              ],
                             ),
-                            top: 0.0,
-                            left: 0.0,
-                            right: 0.0,
-                            height: 189.0,
                           ),
                           new Positioned(
                             bottom: 0.0,

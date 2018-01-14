@@ -39,20 +39,23 @@ class SingleMovieState extends State<SingleMovie> {
       body: new Stack(
         children: <Widget>[
           new Container(color: const Color.fromRGBO(14, 16, 27, 1.0),),
-          new PhotoHero(
-            photo: "https://image.tmdb.org/t/p/w500${passedMovie['backdrop_path']}",
+          new Hero(
             tag: "${passedMovie['id']}backdrop",
-            height: 211.0,
-          ),
-          new Positioned(
-            child: new Container(
-              decoration:
-                  new BoxDecoration(color: const Color.fromRGBO(0, 0, 0, 0.5)),
+            child: new Stack(
+              children: <Widget>[
+                new Image.network("https://image.tmdb.org/t/p/w500${passedMovie['backdrop_path']}",height: 211.0,),
+                new Positioned(
+                  child: new Container(
+                    decoration:
+                        new BoxDecoration(color: const Color.fromRGBO(0, 0, 0, 0.5)),
+                  ),
+                  top: 0.0,
+                  left: 0.0,
+                  right: 0.0,
+                  height: 211.0,
+                ),
+              ],
             ),
-            top: 0.0,
-            left: 0.0,
-            right: 0.0,
-            height: 211.0,
           ),
           new ListView(
             children: <Widget>[
